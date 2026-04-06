@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoldGraphicsNG | Premium Graphic Design Freelance Platform</title>
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiQm9sZEdyYXBoaWNzTkciLCJzaG9ydF9uYW1lIjoiQm9sZEdyYXBoaWNzIiwic3RhcnRfdXJsIjoiLiIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiNmZmZmZmYiLCJ0aGVtZV9jb2xvciI6IiMwZWE1ZTkiLCJvcmllbnRhdGlvbiI6InBvcnRyYWl0IiwiaWNvbnMiOlt7InNyYyI6Imh0dHBzOi8vY2RuLmljb25zY291dC5jb20vaWNvbi9mcmVlLWZhLWZyZWUtYnJ1c2gtMTE0LnBuZyIsInNpemVzIjoiMTkyeDE5MiJ9LHsic3JjIjoiaHR0cHM6Ly9jZG4uaWNvbnNjb3V0LmNvbS9pY29uL2ZyZWUtZmEtZnJlZS1icnVzaC0xMTQucG5nIiwic2l6ZXMiOiI1MTJ4NTEyIn1dfQ==">
+    <meta name="theme-color" content="#0ea5e9">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BoldGraphicsNG">
+    <link rel="apple-touch-icon" href="https://cdn.iconscout.com/icon/free-fa-free-brush-114.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            900: '#0c4a6e',
+                        },
+                        accent: {
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .dark .glass {
+            background: rgba(17, 24, 39, 0.7);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #0ea5e9 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .dark .service-card:hover {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        .chat-bubble {
+            position: relative;
+            padding: 1rem;
+            border-radius: 1rem;
+            max-width: 80%;
+        }
+        .chat-bubble.sent {
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 0.25rem;
+        }
+        .chat-bubble.received {
+            background: #f3f4f6;
+            color: #1f2937;
+            margin-right: auto;
+            border-bottom-left-radius: 0.25rem;
+        }
+        .dark .chat-bubble.received {
+            background: #374151;
+            color: #f9fafb;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .modal {
+            display: none;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .toast {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .toast.show {
+            transform: translateX(0);
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass border-b border-gray-200 dark:border-gray-800 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2 cursor-pointer" onclick="showSection('home')">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center text-white font-bold text-xl">
+                        B
+                    </div>
+                    <span class="font-display font-bold text-2xl tracking-tight">BoldGraphics<span class="text-primary-600 dark:text-primary-500">NG</span></span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" onclick="showSection('home')" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-500 font-medium transition">Home</a>
+                    <a href="#" onclick="showSection('services')" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-500 font-medium transition">Services</a>
+                    <a href="#" onclick="showSection('portfolio')" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-500 font-medium transition">Portfolio</a>
+                    <a href="#" onclick="showSection('dashboard')" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-500 font-medium transition">Dashboard</a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <button onclick="toggleDarkMode()" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition">
+                        <i class="fas fa-moon dark:hidden text-xl"></i>
+                        <i class="fas fa-sun hidden dark:block text-xl text-yellow-400"></i>
+                    </button>
+                    
+                    <div id="authButtons" class="flex items-center space-x-3">
+                        <button onclick="openModal('loginModal')" class="hidden md:block text-gray-700 dark:text-gray-300 font-medium hover:text-primary-600 transition">Log In</button>
+                        <button onclick="openModal('signupModal')" class="bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-full font-medium transition transform hover:scale-105">
+                            Get Started
+                        </button>
+                    </div>
+
+                    <div id="userMenu" class="hidden items-center space-x-3">
+                        <button onclick="showSection('messages')" class="relative p-2 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-full transition">
+                            <i class="fas fa-envelope text-xl"></i>
+                            <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                        </button>
+                        <div class="relative group">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="User" class="w-10 h-10 rounded-full cursor-pointer border-2 border-primary-500">
+                            <div class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-lg py-2 hidden group-hover:block border border-gray-200 dark:border-gray-700">
+                                <a href="#" onclick="showSection('profile')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Profile</a>
+                                <a href="#" onclick="showSection('dashboard')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Dashboard</a>
+                                <a href="#" onclick="showSection('orders')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">My Orders</a>
+                                <hr class="my-2 border-gray-200 dark:border-gray-700">
+                                <a href="#" onclick="logout()" class="block px-4 py-2 text-red-600 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-16">
+        
+        <!-- HOME SECTION -->
+        <section id="home" class="section active">
+            <!-- Hero -->
+            <div class="relative overflow-hidden bg-white dark:bg-gray-900 min-h-screen flex items-center">
+                <div class="absolute inset-0 bg-gradient-to-br from-primary-50/50 to-accent-50/50 dark:from-gray-800/50 dark:to-gray-900/50"></div>
+                <div class="absolute top-20 right-0 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl animate-float"></div>
+                <div class="absolute bottom-20 left-0 w-72 h-72 bg-accent-500/20 rounded-full blur-3xl animate-float" style="animation-delay: 2s;"></div>
+                
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8 animate-slide-up">
+                        <div class="inline-flex items-center space-x-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur px-4 py-2 rounded-full border border-gray-200 dark:border-gray-700">
+                            <span class="flex h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Available for new projects</span>
+                        </div>
+                        
+                        <h1 class="font-display text-5xl lg:text-7xl font-bold leading-tight">
+                            Transform Your Brand with <span class="gradient-text">Bold</span> Design
+                        </h1>
+                        
+                        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-lg">
+                            Professional graphic design services tailored to elevate your business. From logos to complete brand identities, we deliver excellence.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-4">
+                            <button onclick="showSection('services')" class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition transform hover:scale-105 shadow-lg hover:shadow-primary-500/30">
+                                Hire Me <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                            <button onclick="showSection('portfolio')" class="bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-2 border-gray-300 dark:border-gray-700 hover:border-primary-500 px-8 py-4 rounded-full font-semibold text-lg transition">
+                                View Portfolio
+                            </button>
+                            <button onclick="quickOrder()" class="bg-accent-500 hover:bg-accent-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition transform hover:scale-105 shadow-lg">
+                                <i class="fas fa-shopping-cart mr-2"></i>Place Order
+                            </button>
+                        </div>
+
+                        <div class="flex items-center space-x-8 pt-4">
+                            <div>
+                                <div class="text-3xl font-bold text-gray-900 dark:text-white">500+</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-400">Projects Completed</div>
+                            </div>
+                            <div class="w-px h-12 bg-gray-300 dark:bg-gray-700"></div>
+                            <div>
+                                <div class="text-3xl font-bold text-gray-900 dark:text-white">98%</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-400">Client Satisfaction</div>
+                            </div>
+                            <div class="w-px h-12 bg-gray-300 dark:bg-gray-700"></div>
+                            <div>
+                                <div class="text-3xl font-bold text-gray-900 dark:text-white">4.9</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-400">Average Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative lg:h-[600px] flex items-center justify-center">
+                        <div class="relative w-full max-w-lg">
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary-500 to-accent-500 rounded-3xl transform rotate-6 opacity-20"></div>
+                            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop" alt="Design Work" class="relative rounded-3xl shadow-2xl w-full object-cover">
+                            
+                            <!-- Floating Cards -->
+                            <div class="absolute -bottom-6 -left-6 bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-xl animate-float">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-check text-green-600 dark:text-green-400"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-gray-900 dark:text-white">Order Delivered</div>
+                                        <div class="text-sm text-gray-500">Logo Design</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="absolute -top-6 -right-6 bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-xl animate-float" style="animation-delay: 1s;">
+                                <div class="flex items-center space-x-2">
+                                    <div class="flex -space-x-2">
+                                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop&crop=face" class="w-8 h-8 rounded-full border-2 border-white dark:border-gray-800">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face" class="w-8 h-8 rounded-full border-2 border-white dark:border-gray-800">
+                                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop&crop=face" class="w-8 h-8 rounded-full border-2 border-white dark:border-gray-800">
+                                    </div>
+                                    <span class="text-sm font-medium text-gray-600 dark:text-gray-400">+120 happy clients</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="py-20 bg-gray-50 dark:bg-gray-900">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="font-display text-4xl font-bold mb-4">Premium Design Services</h2>
+                        <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Choose from a wide range of professional design services tailored to meet your business needs</p>
+                    </div>
+                    
+                    <div class="bento-grid">
+                        <div class="service-card bg-white dark:bg-gray-800 rounded-3xl p-8 border border-gray-200 dark:border-gray-700 cursor-pointer" onclick="showServiceDetail('logo')">
+                            <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-2xl flex items-center justify-center mb-6">
+                                <i class="fas fa-pen-nib text-2xl text-primary-600 dark:text-primary-400"></i>
+                            </div>
+                            <h3 class="font-display text-2xl font-bold mb-3">Logo Design</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">Unique, memorable logos that capture your brand essence and make lasting impressions.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-primary-600 dark:text-primary-400 font-semibold">From $150</span>
+                                <span class="text-sm text-gray-500">3 packages</span>
+                            </div>
+                        </div>
+
+                        <div class="service-card bg-white dark:bg-gray-800 rounded-3xl p-8 border border-gray-200 dark:border-gray-700 cursor-pointer" onclick="showServiceDetail('branding')">
+                            <div class="w-14 h-14 bg-accent-100 dark:bg-accent-900/30 rounded-2xl flex items-center justify-center mb-6">
+                                <i class="fas fa-palette text-2xl text-accent-600 dark:text-accent-400"></i>
+                            </div>
+                            <h3 class="font-display text-2xl font-bold mb-3">Brand Identity</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">Complete branding solutions including color schemes, typography, and brand guidelines.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-primary-600 dark:text-primary-400 font-semibold">From $500</span>
+                                <span class="text-sm text-gray-500">3 packages</span>
+                            </div>
+                        </div>
+
+                        <div class="service-card bg-white dark:bg-gray-800 rounded-3xl p-8 border border-gray-200 dark:border-gray-700 cursor-pointer" onclick="showServiceDetail('social')">
+                            <div class="w-14 h-14 bg-purple-100 dark:bg-purple-900/30 rounded-2xl flex items-center justify-center mb-6">
+                                <i class="fas fa-share-alt text-2xl text-purple-600 dark:text-purple-400"></i>
+                            </div>
+                            <h3 class="font-display text-2xl font-bold mb-3">Social Media Design</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">Engaging posts, stories, and banners optimized for all social platforms.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-primary-600 dark:text-primary-400 font-semibold">From $100</span>
+                                <span class="text-sm text-gray-500">3 packages</span>
+                            </div>
+                        </div>
+
+                        <div class="service-card bg-white dark:bg-gray-800 rounded-3xl p-8 border border-gray-200 dark:border-gray-700 cursor-pointer" onclick="showServiceDetail('print')">
+                            <div class="w-14 h-14 bg-green-100 dark:bg-green-900/30 rounded-2xl flex items-center justify-center mb-6">
+                                <i class="fas fa-print text-2xl text-green-600 dark:text-green-400"></i>
+                            </div>
+                            <h3 class="font-display text-2xl font-bold mb-3">Print Design</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">Flyers, brochures, business cards, and marketing materials that stand out.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-primary-600 dark:text-primary-400 font-semibold">From $80</span>
+                                <span class="text-sm text-gray-500">3 packages</span>
+                            </div>
+                        </div>
+
+                        <div class="service-card bg-white dark:bg-gray-800 rounded-3xl p-8 border border-gray-200 dark:border-gray-700 cursor-pointer" onclick="showServiceDetail('web')">
+                            <div class="w-14 h-14 bg-red-100 dark:bg-red-900/30 rounded-2xl flex items-center justify-center mb-6">
+                                <i class="fas fa-desktop text-2xl text-red-600 dark:text-red-400"></i>
+                            </div>
+                            <h3 class="font-display text-2xl font-bold mb-3">Web Design</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">Modern, responsive website designs that convert visitors into customers.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-primary-600 dark:text-primary-400 font-semibold">From $800</span>
+                                <span class="text-sm text-gray-500">3 packages</span>
+                            </div>
+                        </div>
+
+                        <div class="service-card bg-white dark:bg-gray-800 rounded-3xl p-8 border border-gray-200 dark:border-gray-700 cursor-pointer" onclick="showServiceDetail('motion')">
+                            <div class="w-14 h-14 bg-pink-100 dark:bg-pink-900/30 rounded-2xl flex items-center justify-center mb-6">
+                                <i class="fas fa-video text-2xl text-pink-600 dark:text-pink-400"></i>
+                            </div>
+                            <h3 class="font-display text-2xl font-bold mb-3">Motion Graphics</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">Animated logos, explainer videos, and dynamic social media content.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-primary-600 dark:text-primary-400 font-semibold">From $300</span>
+                                <span class="text-sm text-gray-500">3 packages</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust Badges -->
+            <div class="py-12 bg-white dark:bg-gray-800 border-y border-gray-200 dark:border-gray-700">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-shield-alt text-3xl text-green-600"></i>
+                            <span class="font-semibold">Secure Payments</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-clock text-3xl text-primary-600"></i>
+                            <span class="font-semibold">On-Time Delivery</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-sync text-3xl text-accent-600"></i>
+                            <span class="font-semibold">Unlimited Revisions</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-headset text-3xl text-purple-600"></i>
+                            <span class="font-semibold">24/7 Support</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-undo text-3xl text-red-600"></i>
+                            <span class="font-semibold">Money Back Guarantee</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonials -->
+            <div class="py-20 bg-white dark:bg-gray-900">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="font-display text-4xl font-bold text-center mb-16">What Clients Say</h2>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-3xl border border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center mb-4">
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-6">"Exceptional work! The logo perfectly captured our brand vision. Communication was seamless throughout the project."</p>
+                            <div class="flex items-center">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" class="w-12 h-12 rounded-full mr-4">
+                                <div>
+                                    <div class="font-semibold">Sarah Johnson</div>
+                                    <div class="text-sm text-gray-500">CEO, TechStart</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-3xl border border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center mb-4">
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-6">"The brand identity package transformed our business. Professional, creative, and delivered ahead of schedule!"</p>
+                            <div class="flex items-center">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" class="w-12 h-12 rounded-full mr-4">
+                                <div>
+                                    <div class="font-semibold">Michael Chen</div>
+                                    <div class="text-sm text-gray-500">Founder, GrowthLabs</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-3xl border border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center mb-4">
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-6">"Best investment we made. The social media designs increased our engagement by 300%. Highly recommend!"</p>
+                            <div class="flex items-center">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" class="w-12 h-12 rounded-full mr-4">
+                                <div>
+                                    <div class="font-semibold">Emily Rodriguez</div>
+                                    <div class="text-sm text-gray-500">Marketing Director</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="services" class="section">
+            <div class="bg-gray-50 dark:bg-gray-900 min-h-screen py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <h1 class="font-display text-4xl font-bold mb-4">Design Services</h1>
+                        <p class="text-gray-600 dark:text-gray-400">Choose the perfect package for your project</p>
+                    </div>
+
+                    <div class="grid lg:grid-cols-3 gap-8" id="servicesList">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICE DETAIL SECTION -->
+        <section id="serviceDetail" class="section">
+            <div class="bg-gray-50 dark:bg-gray-900 min-h-screen py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <button onclick="showSection('services')" class="mb-6 flex items-center text-gray-600 dark:text-gray-400 hover:text-primary-600 transition">
+                        <i class="fas fa-arrow-left mr-2"></i> Back to Services
+                    </button>
+
+                    <div class="grid lg:grid-cols-3 gap-8">
+                        <div class="lg:col-span-2 space-y-6">
+                            <div class="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-700">
+                                <img id="serviceImage" src="" alt="Service" class="w-full h-64 object-cover">
+                                <div class="p-8">
+                                    <h1 id="serviceTitle" class="font-display text-3xl font-bold mb-4"></h1>
+                                    <p id="serviceDesc" class="text-gray-600 dark:text-gray-400 mb-6"></p>
+                                    
+                                    <div class="space-y-4">
+                                        <h3 class="font-semibold text-lg">What's Included:</h3>
+                                        <ul id="serviceFeatures" class="space-y-2 text-gray-600 dark:text-gray-400"></ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 border border-gray-200 dark:border-gray-700">
+                                <h3 class="font-display text-2xl font-bold mb-6">Recent Reviews</h3>
+                                <div id="serviceReviews" class="space-y-4"></div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-1">
+                            <div class="sticky top-24 space-y-4" id="pricingTiers"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO SECTION -->
+        <section id="portfolio" class="section">
+            <div class="bg-gray-50 dark:bg-gray-900 min-h-screen py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <h1 class="font-display text-4xl font-bold mb-4">Portfolio</h1>
+                        <p class="text-gray-600 dark:text-gray-400 mb-8">Explore our latest design projects</p>
+                        
+                        <div class="flex flex-wrap justify-center gap-2">
+                            <button onclick="filterPortfolio('all')" class="portfolio-filter active px-6 py-2 rounded-full bg-primary-600 text-white font-medium transition">All</button>
+                            <button onclick="filterPortfolio('logo')" class="portfolio-filter px-6 py-2 rounded-full bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium transition hover:bg-gray-100 dark:hover:bg-gray-700">Logo Design</button>
+                            <button onclick="filterPortfolio('branding')" class="portfolio-filter px-6 py-2 rounded-full bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium transition hover:bg-gray-100 dark:hover:bg-gray-700">Branding</button>
+                            <button onclick="filterPortfolio('social')" class="portfolio-filter px-6 py-2 rounded-full bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium transition hover:bg-gray-100 dark:hover:bg-gray-700">Social Media</button>
+                            <button onclick="filterPortfolio('print')" class="portfolio-filter px-6 py-2 rounded-full bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium transition hover:bg-gray-100 dark:hover:bg-gray-700">Print</button>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolioGrid"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DASHBOARD SECTION -->
+        <section id="dashboard" class="section">
+            <div class="bg-gray-50 dark:bg-gray-900 min-h-screen py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="mb-8">
+                        <h1 class="font-display text-3xl font-bold">Dashboard</h1>
+                        <p class="text-gray-600 dark:text-gray-400">Manage your projects and track progress</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl border border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-shopping-bag text-blue-600 dark:text-blue-400 text-xl"></i>
+                                </div>
+                                <span class="text-green-500 text-sm font-medium">+12%</span>
+                            </div>
+                            <div class="text-2xl font-bold">24</div>
+                            <div class="text-sm text-gray-500">Active Orders</div>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl border border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-check-circle text-green-600 dark:text-green-400 text-xl"></i>
+                                </div>
+                                <span class="text-green-500 text-sm font-medium">+8%</span>
+                            </div>
+                            <div class="text-2xl font-bold">156</div>
+                            <div class="text-sm text-gray-500">Completed</div>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl border border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-yellow-100 dark:bg-yellow-900/30 rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-clock text-yellow-600 dark:text-yellow-400 text-xl"></i>
+                                </div>
+                                <span class="text-gray-500 text-sm font-medium">Pending</span>
+                            </div>
+                            <div class="text-2xl font-bold">5</div>
+                            <div class="text-sm text-gray-500">In Review</div>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl border border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-dollar-sign text-purple-600 dark:text-purple-400 text-xl"></i>
+                                </div>
+                                <span class="text-green-500 text-sm font-medium">+23%</span>
+                            </div>
+                            <div class="text-2xl font-bold">$12,450</div>
+                            <div class="text-sm text-gray-500">Earnings</div>
+                        </div>
+                    </div>
+
+                    <div class="grid lg:grid-cols-3 gap-8">
+                        <div class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-3xl p-6 border border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="font-display text-xl font-bold">Recent Orders</h3>
+                                <button onclick="showSection('orders')" class="text-primary-600 hover:text-primary-700 font-medium">View All</button>
+                            </div>
+                            <div class="space-y-4" id="dashboardOrders"></div>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 border border-gray-200 dark:border-gray-700">
+                            <h3 class="font-display text-xl font-bold mb-6">Quick Actions</h3>
+                            <div class="space-y-3">
+                                <button onclick="showSection('services')" class="w-full flex items-center p-4 rounded-xl bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition text-left">
+                                    <div class="w-10 h-10 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-plus text-primary-600 dark:text-primary-400"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold">New Order</div>
+                                        <div class="text-sm text-gray-500">Start a new project</div>
+                                    </div>
+                                </button>
+                                <button onclick="showSection('messages')" class="w-full flex items-center p-4 rounded-xl bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition text-left">
+                                    <div class="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-envelope text-green-600 dark:text-green-400"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold">Messages</div>
+                                        <div class="text-sm text-gray-500">3 unread messages</div>
+                                    </div>
+                                </button>
+                                <button onclick="showSection('profile')" class="w-full flex items-center p-4 rounded-xl bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition text-left">
+                                    <div class="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-user text-purple-600 dark:text-purple-400"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold">Edit Profile</div>
+                                        <div class="text-sm text-gray-500">Update your information</div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MESSAGES SECTION -->
+        <section id="messages" class="section">
+            <div class="bg-gray-50 dark:bg-gray-900 min-h-screen py-12">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-[calc(100vh-8rem)]">
+                    <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-lg border border-gray-200 dark:border-gray-700 h-full flex overflow-hidden">
+                        <!-- Sidebar -->
+                        <div class="w-80 border-r border-gray-200 dark:border-gray-700 flex flex-col">
+                            <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                                <h2 class="font-display text-2xl font-bold">Messages</h2>
+                            </div>
+                            <div class="flex-1 overflow-y-auto p-4 space-y-2" id="chatList"></div>
+                        </div>
+
+                        <!-- Chat Area -->
+                        <div class="flex-1 flex flex-col">
+                            <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" class="w-10 h-10 rounded-full mr-3">
+                                    <div>
+                                        <div class="font-semibold">John Designer</div>
+                                        <div class="text-sm text-green-500">Online</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <button onclick="startCall('voice')" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition" title="Voice Call">
+                                        <i class="fas fa-phone text-gray-600 dark:text-gray-400"></i>
+                                    </button>
+                                    <button onclick="startCall('video')" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition" title="Video Call">
+                                        <i class="fas fa-video text-gray-600 dark:text-gray-400"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="flex-1 overflow-y-auto p-4 space-y-4" id="chatMessages"></div>
+
+                            <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+                                <div class="flex items-center space-x-2">
+                                    <button class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
+                                        <i class="fas fa-paperclip text-gray-600 dark:text-gray-400"></i>
+                                    </button>
+                                    <input type="text" id="messageInput" placeholder="Type a message..." class="flex-1 px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-700 border-0 focus:ring-2 focus:ring-primary-500 dark:text-white" onkeypress="handleMessageKeypress(event)">
+                                    <button onclick="sendMessage()" class="p-3 bg-primary-600 hover:bg-primary-700 text-white rounded-full transition">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROFILE SECTION -->
+        <section id="profile" class="section">
+            <div class="bg-gray-50 dark:bg-gray-900 min-h-screen py-12">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-700">
+                        <div class="h-48 bg-gradient-to-r from-primary-500 to-accent-500"></div>
+                        <div class="px-8 pb-8">
+                            <div class="relative flex justify-between items-end -mt-12 mb-6">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face" class="w-24 h-24 rounded-2xl border-4 border-white dark:border-gray-800 shadow-lg">
+                                <button class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2 rounded-full font-medium transition">Edit Profile</button>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <h1 class="font-display text-3xl font-bold mb-1">John Designer</h1>
+                                <p class="text-gray-600 dark:text-gray-400">Senior Graphic Designer & Brand Specialist</p>
+                                <div class="flex items-center mt-2 text-sm text-gray-500">
+                                    <i class="fas fa-map-marker-alt mr-2"></i> Lagos, Nigeria
+                                    <span class="mx-2">•</span>
+                                    <i class="fas fa-clock mr-2"></i> Joined March 2023
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-6 mb-8">
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold">4.9</div>
+                                    <div class="text-sm text-gray-500">Rating</div>
+                                </div>
+                                <div class="w-px h-10 bg-gray-300 dark:bg-gray-700"></div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold">156</div>
+                                    <div class="text-sm text-gray-500">Projects</div>
+                                </div>
+                                <div class="w-px h-10 bg-gray-300 dark:bg-gray-700"></div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold">98%</div>
+                                    <div class="text-sm text-gray-500">Response</div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-6">
+                                <div>
+                                    <h3 class="font-semibold text-lg mb-3">About</h3>
+                                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                                        Professional graphic designer with over 8 years of experience in branding, logo design, and digital marketing materials. I specialize in creating unique visual identities that help businesses stand out in competitive markets.
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <h3 class="font-semibold text-lg mb-3">Skills</h3>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Adobe Illustrator</span>
+                                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Photoshop</span>
+                                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Figma</span>
+                                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Brand Identity</span>
+                                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Logo Design</span>
+                                        <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Motion Graphics</span>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h3 class="font-semibold text-lg mb-3">Portfolio Preview</h3>
+                                    <div class="grid grid-cols-3 gap-4">
+                                        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=300&h=300&fit=crop" class="rounded-xl hover:opacity-80 cursor-pointer transition">
+                                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=300&h=300&fit=crop" class="rounded-xl hover:opacity-80 cursor-pointer transition">
+                                        <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=300&h=300&fit=crop" class="rounded-xl hover:opacity-80 cursor-pointer transition">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHECKOUT SECTION -->
+        <section id="checkout" class="section">
+            <div class="bg-gray-50 dark:bg-gray-900 min-h-screen py-12">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="mb-8">
+                        <h1 class="font-display text-3xl font-bold">Complete Your Order</h1>
+                        <p class="text-gray-600 dark:text-gray-400">Review and confirm your order details</p>
+                    </div>
+
+                    <div class="grid lg:grid-cols-3 gap-8">
+                        <div class="lg:col-span-2 space-y-6">
+                            <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 border border-gray-200 dark:border-gray-700">
+                                <h3 class="font-semibold text-lg mb-4">Order Details</h3>
+                                <div id="checkoutDetails" class="space-y-4"></div>
+                            </div>
+
+                            <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 border border-gray-200 dark:border-gray-700">
+                                <h3 class="font-semibold text-lg mb-4">Upload Requirements</h3>
+                                <div class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-2xl p-8 text-center hover:border-primary-500 transition cursor-pointer" onclick="document.getElementById('fileUpload').click()">
+                                    <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-4"></i>
+                                    <p class="text-gray-600 dark:text-gray-400 mb-2">Click to upload files or drag and drop</p>
+                                    <p class="text-sm text-gray-500">PDF, AI, PSD, JPG up to 50MB</p>
+                                    <input type="file" id="fileUpload" class="hidden" multiple onchange="handleFileUpload(this)">
+                                </div>
+                                <div id="uploadedFiles" class="mt-4 space-y-2"></div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-1">
+                            <div class="sticky top-24 bg-white dark:bg-gray-800 rounded-3xl p-6 border border-gray-200 dark:border-gray-700">
+                                <h3 class="font-semibold text-lg mb-4">Payment Summary</h3>
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex justify-between text-gray-600 dark:text-gray-400">
+                                        <span>Subtotal</span>
+                                        <span id="checkoutSubtotal">$0.00</span>
+                                    </div>
+                                    <div class="flex justify-between text-gray-600 dark:text-gray-400">
+                                        <span>Service Fee</span>
+                                        <span>$5.00</span>
+                                    </div>
+                                    <div class="border-t border-gray-200 dark:border-gray-700 pt-3 flex justify-between font-bold text-lg">
+                                        <span>Total</span>
+                                        <span id="checkoutTotal">$0.00</span>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-3">
+                                    <button onclick="processPayment('stripe')" class="w-full bg-primary-600 hover:bg-primary-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center space-x-2">
+                                        <i class="fab fa-stripe text-2xl"></i>
+                                        <span>Pay with Stripe</span>
+                                    </button>
+                                    <button onclick="processPayment('paypal')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center space-x-2">
+                                        <i class="fab fa-paypal text-xl"></i>
+                                        <span>PayPal</span>
+                                    </button>
+                                    <button onclick="processPayment('paystack')" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center space-x-2">
+                                        <i class="fas fa-credit-card text-xl"></i>
+                                        <span>Paystack</span>
+                                    </button>
+                                </div>
+
+                                <div class="mt-6 flex items-center justify-center space-x-2 text-sm text-gray-500">
+                                    <i class="fas fa-lock"></i>
+                                    <span>Secure SSL Encryption</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ORDERS SECTION -->
+        <section id="orders" class="section">
+            <div class="bg-gray-50 dark:bg-gray-900 min-h-screen py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="mb-8">
+                        <h1 class="font-display text-3xl font-bold">My Orders</h1>
+                        <p class="text-gray-600 dark:text-gray-400">Track and manage your design projects</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+                        <div class="p-6 border-b border-gray-200 dark:border-gray-700 flex flex-wrap gap-4">
+                            <button onclick="filterOrders('all')" class="order-filter active px-4 py-2 rounded-full bg-primary-600 text-white text-sm font-medium transition">All Orders</button>
+                            <button onclick="filterOrders('pending')" class="order-filter px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium transition hover:bg-gray-200 dark:hover:bg-gray-600">Pending</button>
+                            <button onclick="filterOrders('progress')" class="order-filter px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium transition hover:bg-gray-200 dark:hover:bg-gray-600">In Progress</button>
+                            <button onclick="filterOrders('delivered')" class="order-filter px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium transition hover:bg-gray-200 dark:hover:bg-gray-600">Delivered</button>
+                        </div>
+                        <div id="ordersList" class="divide-y divide-gray-200 dark:divide-gray-700"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-primary-500 to-accent-500 rounded-lg flex items-center justify-center text-white font-bold">B</div>
+                        <span class="font-display font-bold text-xl">BoldGraphicsNG</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">Premium graphic design services for businesses that want to stand out.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                        <li><a href="#" onclick="showSection('services')" class="hover:text-primary-600 transition">Logo Design</a></li>
+                        <li><a href="#" onclick="showSection('services')" class="hover:text-primary-600 transition">Brand Identity</a></li>
+                        <li><a href="#" onclick="showSection('services')" class="hover:text-primary-600 transition">Social Media</a></li>
+                        <li><a href="#" onclick="showSection('services')" class="hover:text-primary-600 transition">Print Design</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                        <li><a href="#" class="hover:text-primary-600 transition">About Us</a></li>
+                        <li><a href="#" onclick="showSection('portfolio')" class="hover:text-primary-600 transition">Portfolio</a></li>
+                        <li><a href="#" class="hover:text-primary-600 transition">Contact</a></li>
+                        <li><a href="#" class="hover:text-primary-600 transition">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center hover:bg-primary-600 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center hover:bg-primary-600 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center hover:bg-primary-600 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center hover:bg-primary-600 hover:text-white transition"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 dark:border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-gray-600 dark:text-gray-400">&copy; 2024 BoldGraphicsNG. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0 text-sm text-gray-600 dark:text-gray-400">
+                    <a href="#" class="hover:text-primary-600 transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-primary-600 transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal fixed inset-0 z-50 items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 max-w-md w-full transform transition-all scale-100 shadow-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="font-display text-2xl font-bold">Welcome Back</h2>
+                <button onclick="closeModal('loginModal')" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-2">Email</label>
+                    <input type="email" required class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-primary-500 dark:text-white" placeholder="you@example.com">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Password</label>
+                    <input type="password" required class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-primary-500 dark:text-white" placeholder="••••••••">
+                </div>
+                <div class="flex items-center justify-between text-sm">
+                    <label class="flex items-center">
+                        <input type="checkbox" class="mr-2 rounded border-gray-300 text-primary-600 focus:ring-primary-500">
+                        Remember me
+                    </label>
+                    <a href="#" class="text-primary-600 hover:text-primary-700">Forgot password?</a>
+                </div>
+                <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white py-3 rounded-xl font-semibold transition">Sign In</button>
+            </form>
+            <div class="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
+                Don't have an account? <button onclick="switchModal('loginModal', 'signupModal')" class="text-primary-600 font-medium hover:underline">Sign up</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal fixed inset-0 z-50 items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 max-w-md w-full transform transition-all scale-100 shadow-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="font-display text-2xl font-bold">Create Account</h2>
+                <button onclick="closeModal('signupModal')" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSignup(event)" class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">First Name</label>
+                        <input type="text" required class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-primary-500 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Last Name</label>
+                        <input type="text" required class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-primary-500 dark:text-white">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Email</label>
+                    <input type="email" required class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-primary-500 dark:text-white" placeholder="you@example.com">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Password</label>
+                    <input type="password" required class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-primary-500 dark:text-white" placeholder="••••••••">
+                </div>
+                <div class="flex items-center text-sm">
+                    <input type="checkbox" required class="mr-2 rounded border-gray-300 text-primary-600 focus:ring-primary-500">
+                    <span>I agree to the <a href="#" class="text-primary-600 hover:underline">Terms</a> and <a href="#" class="text-primary-600 hover:underline">Privacy Policy</a></span>
+                </div>
+                <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white py-3 rounded-xl font-semibold transition">Create Account</button>
+            </form>
+            <div class="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
+                Already have an account? <button onclick="switchModal('signupModal', 'loginModal')" class="text-primary-600 font-medium hover:underline">Sign in</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call Modal -->
+    <div id="callModal" class="modal fixed inset-0 z-50 items-center justify-center bg-black/90 backdrop-blur-sm p-4">
+        <div class="text-center text-white">
+            <div class="w-32 h-32 rounded-full bg-gray-700 mx-auto mb-6 flex items-center justify-center overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face" class="w-full h-full object-cover">
+            </div>
+            <h2 class="text-2xl font-bold mb-2">John Designer</h2>
+            <p class="text-gray-400 mb-8" id="callType">Video call...</p>
+            <div class="flex justify-center space-x-6">
+                <button onclick="endCall()" class="w-16 h-16 rounded-full bg-red-500 hover:bg-red-600 flex items-center justify-center transition">
+                    <i class="fas fa-phone-slash text-2xl"></i>
+                </button>
+                <button onclick="endCall()" class="w-16 h-16 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center transition">
+                    <i class="fas fa-phone text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast fixed bottom-4 right-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg p-4 flex items-center space-x-3 z-50 max-w-sm">
+        <div id="toastIcon" class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
+            <i class="fas fa-check"></i>
+        </div>
+        <div>
+            <h4 id="toastTitle" class="font-semibold text-sm">Success</h4>
+            <p id="toastMessage" class="text-sm text-gray-600 dark:text-gray-400">Operation completed successfully</p>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Data Store
+        const services = {
+            logo: {
+                title: "Logo Design",
+                description: "Professional logo design that captures your brand essence and creates lasting impressions. Includes multiple concepts and unlimited revisions.",
+                image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&h=600&fit=crop",
+                features: ["3 unique logo concepts", "Vector files (AI, EPS, PDF)", "High-resolution PNG & JPG", "Unlimited revisions", "Full copyright ownership", "48-hour delivery"],
+                tiers: [
+                    { name: "Basic", price: 150, desc: "Simple logo design", features: ["1 concept", "2 revisions", "PNG files"] },
+                    { name: "Standard", price: 300, desc: "Professional logo package", features: ["3 concepts", "Unlimited revisions", "All file formats", "Brand guidelines"], popular: true },
+                    { name: "Premium", price: 500, desc: "Complete brand identity", features: ["5 concepts", "Unlimited revisions", "All formats", "Business card design", "Social media kit"] }
+                ],
+                reviews: [
+                    { user: "Sarah J.", rating: 5, text: "Amazing work! Exactly what I envisioned.", date: "2 days ago" },
+                    { user: "Mike T.", rating: 5, text: "Fast delivery and excellent communication.", date: "1 week ago" }
+                ]
+            },
+            branding: {
+                title: "Brand Identity",
+                description: "Comprehensive branding solutions that establish your visual identity across all touchpoints. From color palettes to typography systems.",
+                image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&h=600&fit=crop",
+                features: ["Logo design", "Color palette", "Typography selection", "Brand guidelines book", "Stationery design", "Social media templates"],
+                tiers: [
+                    { name: "Basic", price: 500, desc: "Essential branding kit", features: ["Logo", "Color palette", "Basic guidelines"] },
+                    { name: "Standard", price: 800, desc: "Professional brand identity", features: ["Complete visual identity", "Brand book", "Stationery", "Social assets"], popular: true },
+                    { name: "Premium", price: 1200, desc: "Enterprise branding", features: ["Everything in Standard", "Packaging design", "Brand strategy", "Priority support"] }
+                ],
+                reviews: [
+                    { user: "Emma L.", rating: 5, text: "Transformed our entire brand presence!", date: "3 days ago" }
+                ]
+            },
+            social: {
+                title: "Social Media Design",
+                description: "Engaging social media graphics that boost engagement and maintain brand consistency across all platforms.",
+                image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=600&fit=crop",
+                features: ["Instagram posts & stories", "Facebook covers", "Twitter headers", "LinkedIn banners", "Content templates", "Animated posts"],
+                tiers: [
+                    { name: "Basic", price: 100, desc: "5 social media posts", features: ["5 static posts", "1 revision each", "Source files"] },
+                    { name: "Standard", price: 250, desc: "Monthly content package", features: ["15 posts", "5 stories", "Unlimited revisions", "Content calendar"], popular: true },
+                    { name: "Premium", price: 500, desc: "Complete social management", features: ["30 posts", "10 stories", "Animated content", "Monthly strategy call"] }
+                ],
+                reviews: [
+                    { user: "David K.", rating: 5, text: "Engagement increased by 200%!", date: "5 days ago" }
+                ]
+            },
+            print: {
+                title: "Print Design",
+                description: "High-quality print materials that leave lasting impressions. From business cards to large format banners.",
+                image: "https://images.unsplash.com/photo-1586717791821-3f44a5638d48?w=800&h=600&fit=crop",
+                features: ["Business cards", "Flyers & brochures", "Posters & banners", "Packaging design", "Print-ready files", "3D mockups"],
+                tiers: [
+                    { name: "Basic", price: 80, desc: "Single item design", features: ["1 print item", "2 concepts", "Print-ready files"] },
+                    { name: "Standard", price: 200, desc: "Marketing package", features: ["3 items", "Unlimited revisions", "Mockups included"], popular: true },
+                    { name: "Premium", price: 400, desc: "Complete print suite", features: ["5+ items", "Priority delivery", "Source files", "Print consultation"] }
+                ],
+                reviews: []
+            },
+            web: {
+                title: "Web Design",
+                description: "Modern, responsive website designs that convert visitors into customers. UI/UX focused approach.",
+                image: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&h=600&fit=crop",
+                features: ["Responsive design", "UI/UX optimization", "Figma/Sketch files", "Prototype", "Developer handoff", "Revisions included"],
+                tiers: [
+                    { name: "Basic", price: 800, desc: "Landing page", features: ["Single page", "Mobile responsive", "2 revisions"] },
+                    { name: "Standard", price: 1500, desc: "Multi-page website", features: ["Up to 5 pages", "Full responsive", "Interactive prototype"], popular: true },
+                    { name: "Premium", price: 3000, desc: "E-commerce/Complex", features: ["Unlimited pages", "Full UI kit", "Animations", "Priority support"] }
+                ],
+                reviews: []
+            },
+            motion: {
+                title: "Motion Graphics",
+                description: "Dynamic animations and video content that bring your brand to life.",
+                image: "https://images.unsplash.com/photo-1536240478700-b869070f9279?w=800&h=600&fit=crop",
+                features: ["Logo animations", "Explainer videos", "Social media animations", "UI animations", "After Effects files", "Video editing"],
+                tiers: [
+                    { name: "Basic", price: 300, desc: "Simple animation", features: ["5-10 seconds", "1 revision", "1080p export"] },
+                    { name: "Standard", price: 600, desc: "Complex animation", features: ["30 seconds", "3 revisions", "All formats"], popular: true },
+                    { name: "Premium", price: 1200, desc: "Full video production", features: ["60+ seconds", "Voiceover", "Music", "Unlimited revisions"] }
+                ],
+                reviews: []
+            }
+        };
+
+        const portfolioItems = [
+            { id: 1, category: 'logo', title: 'TechStart Logo', image: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&h=600&fit=crop' },
+            { id: 2, category: 'branding', title: 'Coffee House Brand', image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=600&fit=crop' },
+            { id: 3, category: 'social', title: 'Instagram Campaign', image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=600&fit=crop' },
+            { id: 4, category: 'print', title: 'Business Card Set', image: 'https://images.unsplash.com/photo-1586717791821-3f44a5638d48?w=600&h=600&fit=crop' },
+            { id: 5, category: 'logo', title: 'Fitness Brand', image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=600&fit=crop' },
+            { id: 6, category: 'web', title: 'E-commerce UI', image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&h=600&fit=crop' }
+        ];
+
+        const orders = [
+            { id: 'ORD-001', service: 'Logo Design', status: 'delivered', price: 300, date: '2024-03-15', client: 'TechStart Inc.' },
+            { id: 'ORD-002', service: 'Brand Identity', status: 'progress', price: 800, date: '2024-03-18', client: 'Green Cafe' },
+            { id: 'ORD-003', service: 'Social Media Package', status: 'pending', price: 250, date: '2024-03-20', client: 'Fashion Store' },
+            { id: 'ORD-004', service: 'Business Cards', status: 'delivered', price: 150, date: '2024-03-10', client: 'Law Firm' }
+        ];
+
+        const chats = [
+            { id: 1, name: 'Sarah Johnson', lastMessage: 'The logo looks great!', time: '2m ago', unread: 2, avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face' },
+            { id: 2, name: 'Michael Chen', lastMessage: 'Can we revise the colors?', time: '1h ago', unread: 0, avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face' },
+            { id: 3, name: 'Emily Rodriguez', lastMessage: 'Thanks for the quick delivery', time: '2d ago', unread: 0, avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face' }
+        ];
+
+        const messages = [
+            { id: 1, sender: 'other', text: 'Hi! I\'d like to discuss the logo design project.', time: '10:00 AM' },
+            { id: 2, sender: 'me', text: 'Hello! I\'d be happy to help. What kind of logo are you looking for?', time: '10:05 AM' },
+            { id: 3, sender: 'other', text: 'Something modern and minimalist for my tech startup.', time: '10:10 AM' },
+            { id: 4, sender: 'me', text: 'Perfect! I have some ideas. Would you like to schedule a call to discuss further?', time: '10:15 AM' }
+        ];
+
+        let currentUser = null;
+        let cart = [];
+        let currentService = null;
+        let uploadedFiles = [];
+
+        // Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            initDarkMode();
+            renderServices();
+            renderPortfolio('all');
+            renderOrders('all');
+            renderChatList();
+            renderMessages();
+            renderDashboardOrders();
+        });
+
+        // Dark Mode
+        function initDarkMode() {
+            if (localStorage.getItem('darkMode') === 'true' || 
+                (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+        }
+
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+        }
+
+        // Navigation
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Services
+        function renderServices() {
+            const container = document.getElementById('servicesList');
+            if (!container) return;
+            
+            container.innerHTML = Object.entries(services).map(([key, service]) => `
+                <div class="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-700 hover:shadow-xl transition cursor-pointer" onclick="showServiceDetail('${key}')">
+                    <img src="${service.image}" alt="${service.title}" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-display text-2xl font-bold mb-2">${service.title}</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">${service.description}</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-primary-600 dark:text-primary-400 font-bold text-xl">From $${service.tiers[0].price}</span>
+                            <button class="text-primary-600 hover:text-primary-700 font-medium">View Details <i class="fas fa-arrow-right ml-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showServiceDetail(serviceKey) {
+            currentService = { key: serviceKey, ...services[serviceKey] };
+            const service = currentService;
+            
+            document.getElementById('serviceImage').src = service.image;
+            document.getElementById('serviceTitle').textContent = service.title;
+            document.getElementById('serviceDesc').textContent = service.description;
+            
+            document.getElementById('serviceFeatures').innerHTML = service.features.map(f => 
+                `<li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>${f}</li>`
+            ).join('');
+            
+            document.getElementById('serviceReviews').innerHTML = service.reviews.length ? service.reviews.map(r => `
+                <div class="border-b border-gray-200 dark:border-gray-700 pb-4 last:border-0">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mr-3 font-semibold text-primary-600 dark:text-primary-400">${r.user[0]}</div>
+                            <span class="font-medium">${r.user}</span>
+                        </div>
+                        <span class="text-sm text-gray-500">${r.date}</span>
+                    </div>
+                    <div class="flex text-yellow-400 text-sm mb-2">${Array(r.rating).fill('<i class="fas fa-star"></i>').join('')}</div>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">${r.text}</p>
+                </div>
+            `).join('') : '<p class="text-gray-500">No reviews yet</p>';
+            
+            document.getElementById('pricingTiers').innerHTML = service.tiers.map((tier, index) => `
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 border-2 ${tier.popular ? 'border-primary-500 relative' : 'border-gray-200 dark:border-gray-700'}">
+                    ${tier.popular ? '<div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary-600 text-white text-xs font-bold px-3 py-1 rounded-full">MOST POPULAR</div>' : ''}
+                    <h4 class="font-display text-xl font-bold mb-1">${tier.name}</h4>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">${tier.desc}</p>
+                    <div class="text-3xl font-bold mb-4">$${tier.price}</div>
+                    <ul class="space-y-2 mb-6 text-sm text-gray-600 dark:text-gray-400">
+                        ${tier.features.map(f => `<li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>${f}</li>`).join('')}
+                    </ul>
+                    <button onclick="addToCart(${index})" class="w-full ${tier.popular ? 'bg-primary-600 hover:bg-primary-700 text-white' : 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-white'} py-3 rounded-xl font-semibold transition">
+                        Select Package
+                    </button>
+                </div>
+            `).join('');
+            
+            showSection('serviceDetail');
+        }
+
+        // Cart & Checkout
+        function addToCart(tierIndex) {
+            if (!currentUser) {
+                openModal('loginModal');
+                return;
+            }
+            
+            const tier = currentService.tiers[tierIndex];
+            cart = [{
+                service: currentService.title,
+                tier: tier.name,
+                price: tier.price,
+                features: tier.features
+            }];
+            
+            showCheckout();
+        }
+
+        function quickOrder() {
+            showSection('services');
+            showToast('Select a service to get started', 'info');
+        }
+
+        function showCheckout() {
+            const item = cart[0];
+            document.getElementById('checkoutDetails').innerHTML = `
+                <div class="flex justify-between items-start pb-4 border-b border-gray-200 dark:border-gray-700">
+                    <div>
+                        <h4 class="font-semibold text-lg">${item.service} - ${item.tier}</h4>
+                        <ul class="mt-2 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                            ${item.features.map(f => `<li>• ${f}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <span class="font-bold text-xl">$${item.price}</span>
+                </div>
+            `;
+            
+            document.getElementById('checkoutSubtotal').textContent = `$${item.price.toFixed(2)}`;
+            document.getElementById('checkoutTotal').textContent = `$${(item.price + 5).toFixed(2)}`;
+            
+            showSection('checkout');
+        }
+
+        function handleFileUpload(input) {
+            const files = Array.from(input.files);
+            uploadedFiles = [...uploadedFiles, ...files];
+            renderUploadedFiles();
+        }
+
+        function renderUploadedFiles() {
+            const container = document.getElementById('uploadedFiles');
+            container.innerHTML = uploadedFiles.map((file, index) => `
+                <div class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                    <div class="flex items-center">
+                        <i class="fas fa-file text-primary-600 mr-3"></i>
+                        <span class="text-sm truncate max-w-xs">${file.name}</span>
+                    </div>
+                    <button onclick="removeFile(${index})" class="text-red-500 hover:text-red-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function removeFile(index) {
+            uploadedFiles.splice(index, 1);
+            renderUploadedFiles();
+        }
+
+        function processPayment(method) {
+            showToast(`Processing ${method} payment...`, 'info');
+            setTimeout(() => {
+                showToast('Payment successful! Order confirmed.', 'success');
+                const newOrder = {
+                    id: `ORD-${String(orders.length + 1).padStart(3, '0')}`,
+                    service: cart[0].service,
+                    status: 'pending',
+                    price: cart[0].price,
+                    date: new Date().toISOString().split('T')[0],
+                    client: currentUser ? currentUser.name : 'Guest'
+                };
+                orders.unshift(newOrder);
+                cart = [];
+                uploadedFiles = [];
+                renderOrders('all');
+                renderDashboardOrders();
+                showSection('orders');
+            }, 2000);
+        }
+
+        // Portfolio
+        function renderPortfolio(filter) {
+            const container = document.getElementById('portfolioGrid');
+            const filtered = filter === 'all' ? portfolioItems : portfolioItems.filter(item => item.category === filter);
+            
+            container.innerHTML = filtered.map(item => `
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer">
+                    <img src="${item.image}" alt="${item.title}" class="w-full h-64 object-cover transition transform group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <div>
+                            <h3 class="text-white font-bold text-xl">${item.title}</h3>
+                            <p class="text-gray-300 text-sm capitalize">${item.category}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterPortfolio(category) {
+            document.querySelectorAll('.portfolio-filter').forEach(btn => {
+                btn.classList.remove('active', 'bg-primary-600', 'text-white');
+                btn.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+            });
+            event.target.classList.add('active', 'bg-primary-600', 'text-white');
+            event.target.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+            renderPortfolio(category);
+        }
+
+        // Orders
+        function renderOrders(filter) {
+            const container = document.getElementById('ordersList');
+            const filtered = filter === 'all' ? orders : orders.filter(o => o.status === filter);
+            
+            container.innerHTML = filtered.map(order => `
+                <div class="p-6 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-xl bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+                            <i class="fas fa-shopping-bag text-gray-600 dark:text-gray-400"></i>
+                        </div>
+                        <div>
+                            <div class="font-semibold">${order.service}</div>
+                            <div class="text-sm text-gray-500">${order.id} • ${order.date}</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(order.status)}">
+                            ${order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+                        </span>
+                        <span class="font-bold">$${order.price}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getStatusColor(status) {
+            const colors = {
+                pending: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400',
+                progress: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400',
+                delivered: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
+            };
+            return colors[status] || 'bg-gray-100 text-gray-800';
+        }
+
+        function filterOrders(status) {
+            document.querySelectorAll('.order-filter').forEach(btn => {
+                btn.classList.remove('active', 'bg-primary-600', 'text-white');
+                btn.classList.add('bg-gray-100', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+            });
+            event.target.classList.add('active', 'bg-primary-600', 'text-white');
+            event.target.classList.remove('bg-gray-100', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+            renderOrders(status);
+        }
+
+        function renderDashboardOrders() {
+            const container = document.getElementById('dashboardOrders');
+            container.innerHTML = orders.slice(0, 3).map(order => `
+                <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-lg bg-white dark:bg-gray-600 flex items-center justify-center">
+                            <i class="fas fa-box text-primary-600"></i>
+                        </div>
+                        <div>
+                            <div class="font-medium text-sm">${order.service}</div>
+                            <div class="text-xs text-gray-500">${order.id}</div>
+                        </div>
+                    </div>
+                    <span class="px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(order.status)}">
+                        ${order.status}
+                    </span>
+                </div>
+            `).join('');
+        }
+
+        // Chat
+        function renderChatList() {
+            const container = document.getElementById('chatList');
+            container.innerHTML = chats.map(chat => `
+                <div class="flex items-center p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition ${chat.unread ? 'bg-blue-50 dark:bg-blue-900/20' : ''}">
+                    <div class="relative">
+                        <img src="${chat.avatar}" class="w-12 h-12 rounded-full object-cover">
+                        ${chat.unread ? '<span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-white text-xs flex items-center justify-center">' + chat.unread + '</span>' : ''}
+                    </div>
+                    <div class="ml-3 flex-1 min-w-0">
+                        <div class="flex justify-between items-start">
+                            <span class="font-medium truncate">${chat.name}</span>
+                            <span class="text-xs text-gray-500">${chat.time}</span>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 truncate">${chat.lastMessage}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderMessages() {
+            const container = document.getElementById('chatMessages');
+            container.innerHTML = messages.map(msg => `
+                <div class="chat-bubble ${msg.sender === 'me' ? 'sent' : 'received'}">
+                    <p>${msg.text}</p>
+                    <span class="text-xs opacity-75 mt-1 block">${msg.time}</span>
+                </div>
+            `).join('');
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function handleMessageKeypress(e) {
+            if (e.key === 'Enter') sendMessage();
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const text = input.value.trim();
+            if (!text) return;
+            
+            messages.push({
+                id: messages.length + 1,
+                sender: 'me',
+                text: text,
+                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            });
+            
+            input.value = '';
+            renderMessages();
+            
+            setTimeout(() => {
+                messages.push({
+                    id: messages.length + 1,
+                    sender: 'other',
+                    text: 'Thanks for your message! I\'ll get back to you shortly.',
+                    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                });
+                renderMessages();
+            }, 2000);
+        }
+
+        function startCall(type) {
+            document.getElementById('callType').textContent = type === 'video' ? 'Video call...' : 'Voice call...';
+            openModal('callModal');
+        }
+
+        function endCall() {
+            closeModal('callModal');
+            showToast('Call ended', 'info');
+        }
+
+        // Auth
+        function handleLogin(e) {
+            e.preventDefault();
+            currentUser = { name: 'John Doe', email: 'john@example.com' };
+            closeModal('loginModal');
+            updateAuthUI();
+            showToast('Welcome back, John!', 'success');
+        }
+
+        function handleSignup(e) {
+            e.preventDefault();
+            currentUser = { name: 'New User', email: 'user@example.com' };
+            closeModal('signupModal');
+            updateAuthUI();
+            showToast('Account created successfully!', 'success');
+        }
+
+        function logout() {
+            currentUser = null;
+            updateAuthUI();
+            showToast('Logged out successfully', 'info');
+            showSection('home');
+        }
+
+        function updateAuthUI() {
+            const authButtons = document.getElementById('authButtons');
+            const userMenu = document.getElementById('userMenu');
+            
+            if (currentUser) {
+                authButtons.classList.add('hidden');
+                userMenu.classList.remove('hidden');
+                userMenu.classList.add('flex');
+            } else {
+                authButtons.classList.remove('hidden');
+                userMenu.classList.add('hidden');
+                userMenu.classList.remove('flex');
+            }
+        }
+
+        // Modals
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function switchModal(from, to) {
+            closeModal(from);
+            setTimeout(() => openModal(to), 200);
+        }
+
+        // Toast
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const icon = document.getElementById('toastIcon');
+            const title = document.getElementById('toastTitle');
+            
+            document.getElementById('toastMessage').textContent = message;
+            
+            if (type === 'success') {
+                icon.innerHTML = '<i class="fas fa-check"></i>';
+                icon.className = 'w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400';
+                title.textContent = 'Success';
+            } else {
+                icon.innerHTML = '<i class="fas fa-info"></i>';
+                icon.className = 'w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400';
+                title.textContent = 'Info';
+            }
+            
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // Close modals on outside click
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>
